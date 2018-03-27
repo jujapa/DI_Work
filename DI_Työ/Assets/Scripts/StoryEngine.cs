@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class StoryEngine {
 
-    public enum Location { NoLocation, Building, Tree}
+    public enum Location { NoLocation, Building, Tree, Rock, Chips, Asphalt}
 
     /*
     public GameObject storyEngineObj;

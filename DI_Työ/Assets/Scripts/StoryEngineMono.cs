@@ -74,6 +74,21 @@ public class StoryEngineMono : MonoBehaviour {
                     createdText += "Pre 1";
                     break;
                 }
+            case 3:
+                {
+                    createdText += "Pre 2";
+                    break;
+                }
+            case 4:
+                {
+                    createdText += "Pre 3";
+                    break;
+                }
+            case 5:
+                {
+                    createdText += "Pre 4";
+                    break;
+                }
             default:
                 {
                     createdText += "Pre default";
@@ -86,26 +101,49 @@ public class StoryEngineMono : MonoBehaviour {
         switch (l)
         {
 
-            //building case
+            //NoLocation case
             case 0:
                 {
                     createdText += "NoLocation";
                     break;
                 }
 
-            //Tree case
+            //Building case
             case 1:
                 {
                     createdText += " Main Body 0";
                     break;
                 }
 
+            //Tree
             case 2:
                 {
                     createdText += " Main Body 1";
                     break;
                 }
+            
+            //Rock case
+            case 3:
+                {
+                    createdText += " Main Body 1";
+                    break;
+                }
 
+            //Chip case
+            case 4:
+                {
+                    createdText += " Main Body 1";
+                    break;
+                }
+
+            //Asphalt case
+            case 5:
+                {
+                    createdText += " Main Body 1";
+                    break;
+                }
+
+            //Default case
             default:
                 {
                     createdText += " Main Body default";
