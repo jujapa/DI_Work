@@ -6,11 +6,13 @@ public class GameEngine : MonoBehaviour {
 
     public GameObject mapObject;
     public GameObject closeProgramWindow;
+    public StoryEngineMono storyEngineInstance;
     //public GameObject cameraObject;
 
 	// Use this for initialization
 	void Start () {
         mapObject.SetActive(false);
+        storyEngineInstance = GameObject.FindGameObjectWithTag("StoryEngine").GetComponent<StoryEngineMono>();
         //cameraObject.SetActive(true);
 	}
 	

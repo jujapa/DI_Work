@@ -7,7 +7,8 @@ public class StoryEngineMono : MonoBehaviour {
 
     public StoryEngine.Location previousLocation;
     public StoryEngine.Location lastLocation;
-    public StoryEngine.Location[] visitedLocations;
+    public List<StoryEngine.Location> visitedLocations;
+    //public StoryEngine.Location[] visitedLocations;
     public bool testing;
     private string[] factoids = new string[] { "Coffee room is at the other side.", "This is the place of futuristic learning in modern times.", "This is the fourth floor.", "Agora was known as Facility of Natural Sciences 2.", "Agora's renovation was completed 2017." };
     private string[] locationAdvice = new string[] { "Try location 1", "Try location 2", "Try location 3", "Try location 4", "Try location 5" };
@@ -39,7 +40,8 @@ public class StoryEngineMono : MonoBehaviour {
         {
             previousLocation = StoryEngine.Location.NoLocation;
             lastLocation = loc;
-
+            //CheckForLocation(loc);
+            visitedLocations.Add(loc);
         }
         else
         {
@@ -47,6 +49,8 @@ public class StoryEngineMono : MonoBehaviour {
             {
                 previousLocation = lastLocation;
                 lastLocation = loc;
+                visitedLocations.Add(loc);
+             //   CheckForLocation(loc);
             }
         }
 
@@ -162,7 +166,7 @@ public class StoryEngineMono : MonoBehaviour {
             
             //Untested Starts
             //add advice for next location
-            for (int x = 0; x < visitedLocations.Length; x++)
+            for (int x = 0; x < visitedLocations.Count; x++)
             {
                 foreach(StoryEngine.Location temp in Enum.GetValues(typeof(StoryEngine.Location)))
                 {
@@ -173,7 +177,14 @@ public class StoryEngineMono : MonoBehaviour {
                 }    
             }
 
-            createdText += advicePool[UnityEngine.Random.Range(0, advicePool.Count - 1)];
+            if (advicePool[0] != null)
+            {
+                createdText += advicePool[UnityEngine.Random.Range(0, advicePool.Count - 1)];
+            }
+            else
+            {
+                createdText += " You have visited all locations.";
+            }
             //Untested ends
 
 
@@ -182,6 +193,7 @@ public class StoryEngineMono : MonoBehaviour {
 
         }//End of test text generator
 
+        //Part for generating real case texts
         else
         {
             createdText = "Real test Text StoryEngine.";
@@ -195,16 +207,20 @@ public class StoryEngineMono : MonoBehaviour {
     }
 
     //Possibly unnessesary
+    //Bugged
     public void CheckForLocation(StoryEngine.Location loc)
     {
         
-        for (int i = 0; i < visitedLocations.Length; i++)
+        for (int i = 0; i < visitedLocations.Count - 1; i++)
         {
-            
+            if (visitedLocations[i] != loc)
+            {
+                visitedLocations.Add(loc);
+            }
         }
     }
 
-    /*
+    
     //Untested function
     //Sees if given loc is found in given list. Returns bool
     public Boolean CompareToLocationEnum(StoryEngine.Location loc, StoryEngine.Location[] locList)
@@ -224,8 +240,9 @@ public class StoryEngineMono : MonoBehaviour {
 
         return result;
     }
-    */
+    
 
+    
 
     //Untested function
     //Sees if given loc is found in visitedLocations list. Returns bool
@@ -233,7 +250,7 @@ public class StoryEngineMono : MonoBehaviour {
     {
         bool result = false;
 
-       for(int i = 0; i < visitedLocations.Length; i++)
+       for(int i = 0; i < visitedLocations.Count; i++)
         {
             if(loc == visitedLocations[i])
             {
@@ -256,4 +273,17 @@ public class StoryEngineMono : MonoBehaviour {
 
 
     }
+
+    public void DebugPrint()
+    {
+       for(int x = 0; x < visitedLocations.Count; x++)
+        {
+            StoryEngine.Location debugLoc = visitedLocations[x];
+            string debugText = debugLoc.ToString();
+
+            Debug.Log("Visited Location: " + debugText);
+        }
+        
+    }
+
 }
