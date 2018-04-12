@@ -21,12 +21,6 @@ public class GameEngine : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.Escape))
         {
-            /*
-            if(closeProgramWindow.activeSelf == true)
-            {
-                closeProgramWindow.SetActive(true);
-            }
-            */
 
             if(closeProgramWindow.activeSelf == true)
             {
@@ -38,6 +32,7 @@ public class GameEngine : MonoBehaviour {
             }
         }
 
+#if UNITY_ANDROID
         if (Input.deviceOrientation == DeviceOrientation.FaceUp)
         {
             if (mapObject.activeSelf == false)//replaced active with activeSelf
@@ -52,6 +47,26 @@ public class GameEngine : MonoBehaviour {
                 mapObject.SetActive(false);
             }
         }
+#endif
 
-	}
+
+#if UNITY_EDITOR
+        if (Input.GetKey(KeyCode.F5))
+        {
+            storyEngineInstance.DebugPrint();
+        }
+
+        if (Input.GetKey(KeyCode.M))
+        {
+            if (mapObject.activeSelf == false)
+            {
+                    mapObject.SetActive(true);
+            }
+            else
+            {
+                    mapObject.SetActive(false);
+            }
+        }
+#endif
+    }
 }
