@@ -40,8 +40,8 @@ public class StoryEngineMono : MonoBehaviour {
         {
             previousLocation = StoryEngine.Location.NoLocation;
             lastLocation = loc;
-            //CheckForLocation(loc);
-            visitedLocations.Add(loc);
+            CheckForLocation(loc);
+            //visitedLocations.Add(loc);
         }
         else
         {
@@ -49,8 +49,8 @@ public class StoryEngineMono : MonoBehaviour {
             {
                 previousLocation = lastLocation;
                 lastLocation = loc;
-                visitedLocations.Add(loc);
-             //   CheckForLocation(loc);
+                //visitedLocations.Add(loc);
+                CheckForLocation(loc);
             }
         }
 
@@ -163,8 +163,9 @@ public class StoryEngineMono : MonoBehaviour {
 
             }
 
-            
+            /*
             //Untested Starts
+            //#BUGGED#
             //add advice for next location
             for (int x = 0; x < visitedLocations.Count; x++)
             {
@@ -186,7 +187,7 @@ public class StoryEngineMono : MonoBehaviour {
                 createdText += " You have visited all locations.";
             }
             //Untested ends
-
+            */
 
 
 
@@ -207,16 +208,29 @@ public class StoryEngineMono : MonoBehaviour {
     }
 
     //Possibly unnessesary
-    //Bugged
+    //Under Testing...
+    //Bugged in var1!=var2
+    //Causes multible entriest at the time instead of blocking dublicates
     public void CheckForLocation(StoryEngine.Location loc)
     {
-        
-        for (int i = 0; i < visitedLocations.Count - 1; i++)
+        if (visitedLocations.Count != 0)
         {
-            if (visitedLocations[i] != loc)
+            Debug.Log("CheckForLocations debug.");
+            for (int i = 0; i <= visitedLocations.Count - 1; i++)
             {
-                visitedLocations.Add(loc);
+                string var1 = Enum.GetName(typeof(StoryEngine.Location), visitedLocations[i]);
+                Debug.Log(var1);
+                string var2 = Enum.GetName(typeof(StoryEngine.Location), loc);
+                Debug.Log(var2);
+                if (var1 != var2)
+                {
+                    visitedLocations.Add(loc);
+                }
             }
+        }
+        else
+        {
+            visitedLocations.Add(loc);
         }
     }
 
@@ -274,16 +288,21 @@ public class StoryEngineMono : MonoBehaviour {
 
     }
 
+    //For editor testing
+#if UNITY_EDITOR
+
+        //to print visited locations list to console
     public void DebugPrint()
     {
        for(int x = 0; x < visitedLocations.Count; x++)
         {
             StoryEngine.Location debugLoc = visitedLocations[x];
-            string debugText = debugLoc.ToString();
+            string debugText = Enum.GetName(typeof(StoryEngine.Location), debugLoc);//Gets name from given enum
 
             Debug.Log("Visited Location: " + debugText);
         }
         
     }
+#endif
 
 }
