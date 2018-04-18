@@ -5,19 +5,20 @@ using System;
 
 public class StoryEngineMono : MonoBehaviour {
 
-    public StoryEngine.Location previousLocation;
-    public StoryEngine.Location lastLocation;
-    public List<StoryEngine.Location> visitedLocations;
+    public StoryEngine.Location previousLocation = StoryEngine.Location.NoLocation;
+    public StoryEngine.Location lastLocation = StoryEngine.Location.NoLocation;
+    public List<StoryEngine.Location> visitedLocations = new List<StoryEngine.Location>();
+    public bool[] visitedLocationsBoolean = new bool[] { true, false, false, false, false, false };
     //public StoryEngine.Location[] visitedLocations;
     public bool testing;
     private string[] factoids = new string[] { "Coffee room is at the other side.", "This is the place of futuristic learning in modern times.", "This is the fourth floor.", "Agora was known as Facility of Natural Sciences 2.", "Agora's renovation was completed 2017." };
-    private string[] locationAdvice = new string[] { "Try location 1", "Try location 2", "Try location 3", "Try location 4", "Try location 5" };
+    private string[] locationAdvice = new string[] {"Try any location", "Try location 1", "Try location 2", "Try location 3", "Try location 4", "Try location 5" };
     private List<string> advicePool;
 
     // Use this for initialization
     void Start()
     {
-        
+        visitedLocations.Add(StoryEngine.Location.NoLocation);
     }
 
     // Update is called once per frame
@@ -213,9 +214,27 @@ public class StoryEngineMono : MonoBehaviour {
     //Causes multible entriest at the time instead of blocking dublicates
     public void CheckForLocation(StoryEngine.Location loc)
     {
+        //visitedLocations.Add(loc);
+
+        if(visitedLocations.Count >= 0)
+        {
+            Debug.Log("CheckForLocations debug.");
+            Debug.Log((int)loc);
+
+            if (visitedLocationsBoolean[(int)loc] == false)
+            {
+                visitedLocations.Add(loc);
+                visitedLocationsBoolean[(int)loc] = true;
+            }
+        }
+
+        /*
+        //Old
         if (visitedLocations.Count != 0)
         {
             Debug.Log("CheckForLocations debug.");
+            
+            //bugged adds too many
             for (int i = 0; i <= visitedLocations.Count - 1; i++)
             {
                 string var1 = Enum.GetName(typeof(StoryEngine.Location), visitedLocations[i]);
@@ -227,11 +246,13 @@ public class StoryEngineMono : MonoBehaviour {
                     visitedLocations.Add(loc);
                 }
             }
+            
         }
         else
         {
             visitedLocations.Add(loc);
         }
+        */
     }
 
     

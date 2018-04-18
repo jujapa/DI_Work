@@ -9,6 +9,9 @@ public class GameEngine : MonoBehaviour {
     public StoryEngineMono storyEngineInstance;
     //public GameObject cameraObject;
 
+    private float buttonCooldownTime = 2.0f;
+    private float currentCooldownTime = 0.0f;
+
 	// Use this for initialization
 	void Start () {
         mapObject.SetActive(false);
@@ -67,6 +70,55 @@ public class GameEngine : MonoBehaviour {
                     mapObject.SetActive(false);
             }
         }
+
+        if (Input.GetKey(KeyCode.Keypad1))
+        {
+            if (currentCooldownTime <= 0.0f)
+            {
+                storyEngineInstance.CheckForLocation(StoryEngine.Location.Asphalt);
+                currentCooldownTime = buttonCooldownTime;
+            }
+        }
+
+        if (Input.GetKey(KeyCode.Keypad2))
+        {
+            if (currentCooldownTime <= 0.0f)
+            {
+                storyEngineInstance.CheckForLocation(StoryEngine.Location.Asphalt);
+                currentCooldownTime = buttonCooldownTime;
+            }
+        }
+
+        if (Input.GetKey(KeyCode.Keypad3))
+        {
+            if (currentCooldownTime <= 0.0f)
+            {
+                storyEngineInstance.CheckForLocation(StoryEngine.Location.Asphalt);
+                currentCooldownTime = buttonCooldownTime;
+            }
+        }
+
+        if (Input.GetKey(KeyCode.Keypad4))
+        {
+            if (currentCooldownTime <= 0.0f)
+            {
+                storyEngineInstance.CheckForLocation(StoryEngine.Location.Asphalt);
+                currentCooldownTime = buttonCooldownTime;
+            }
+        }
+
+        if (Input.GetKey(KeyCode.Keypad5))
+        {
+            if (currentCooldownTime <= 0.0f)
+            {
+                storyEngineInstance.CheckForLocation(StoryEngine.Location.Asphalt);
+                currentCooldownTime = buttonCooldownTime;
+            }
+        }
+
+        currentCooldownTime -= Time.deltaTime;
+        //Debug.Log(string.Format("{0:N4}", currentCooldownTime));
+
 #endif
     }
 }
