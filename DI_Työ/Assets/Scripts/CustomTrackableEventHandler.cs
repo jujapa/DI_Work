@@ -33,7 +33,7 @@ namespace Vuforia
         void Start()
         {
             storyEngine = GameObject.FindGameObjectWithTag("StoryEngine");
-            Debug.Log("Start Test");
+            //Debug.Log("Start Test");
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
             if (mTrackableBehaviour)
             {
@@ -59,7 +59,7 @@ namespace Vuforia
                                         TrackableBehaviour.Status previousStatus,
                                         TrackableBehaviour.Status newStatus)
         {
-            Debug.Log("Before if statement");
+            //Debug.Log("Before if statement");
 
             if (newStatus == TrackableBehaviour.Status.DETECTED ||
                 newStatus == TrackableBehaviour.Status.TRACKED ||
@@ -77,7 +77,7 @@ namespace Vuforia
                 trackableCanvas.SetActive(false);
                 OnTrackingLost();
             }
-            Debug.Log("After If Statement");
+            //Debug.Log("After If Statement");
         }
 
         #endregion // PUBLIC_METHODS
@@ -116,13 +116,13 @@ namespace Vuforia
                 component.enabled = true;
             }
 
-            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
+            //Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
 
 
         private void OnTrackingLost()
         {
-            Debug.Log("Start of TrackingLost");
+            //Debug.Log("Start of TrackingLost");
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
             Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 
@@ -144,8 +144,8 @@ namespace Vuforia
                 component.enabled = false;
             }
 
-            Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
-            Debug.Log("End of tracking lost");
+            //Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
+            //Debug.Log("End of tracking lost");
         }
 
         #endregion // PRIVATE_METHODS

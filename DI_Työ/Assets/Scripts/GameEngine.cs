@@ -54,6 +54,7 @@ public class GameEngine : MonoBehaviour {
 
 
 #if UNITY_EDITOR
+        #region testing_inputs
         if (Input.GetKey(KeyCode.F5))
         {
             storyEngineInstance.DebugPrint();
@@ -118,7 +119,7 @@ public class GameEngine : MonoBehaviour {
 
         currentCooldownTime -= Time.deltaTime;
         //Debug.Log(string.Format("{0:N4}", currentCooldownTime));
-
+        #endregion
 #endif
     }
 }

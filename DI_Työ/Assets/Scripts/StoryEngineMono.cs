@@ -18,6 +18,7 @@ public class StoryEngineMono : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        //Add nolocation as a visited location as it's no location
         visitedLocations.Add(StoryEngine.Location.NoLocation);
     }
 
@@ -321,9 +322,9 @@ public class StoryEngineMono : MonoBehaviour {
             string debugText = Enum.GetName(typeof(StoryEngine.Location), debugLoc);//Gets name from given enum
 
             Debug.Log("Visited Location: " + debugText);
-        }
-        
+        }     
     }
+
 #endif
 
-}
+}//End of Class
