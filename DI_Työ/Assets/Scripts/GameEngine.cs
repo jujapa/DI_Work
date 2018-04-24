@@ -22,7 +22,7 @@ public class GameEngine : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
 
             if(closeProgramWindow.activeSelf == true)
@@ -55,13 +55,15 @@ public class GameEngine : MonoBehaviour {
 
 #if UNITY_EDITOR
         #region testing_inputs
-        if (Input.GetKey(KeyCode.F5))
+        if (Input.GetKeyDown(KeyCode.F5))
         {
             storyEngineInstance.DebugPrint();
         }
 
         if (Input.GetKey(KeyCode.M))
         {
+            //mapObject.SetActive(!mapObject.activeSelf);
+            
             if (mapObject.activeSelf == false)
             {
                     mapObject.SetActive(true);
@@ -70,9 +72,10 @@ public class GameEngine : MonoBehaviour {
             {
                     mapObject.SetActive(false);
             }
+            
         }
 
-        if (Input.GetKey(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Keypad1))
         {
             if (currentCooldownTime <= 0.0f)
             {
@@ -81,7 +84,7 @@ public class GameEngine : MonoBehaviour {
             }
         }
 
-        if (Input.GetKey(KeyCode.Keypad2))
+        if (Input.GetKeyDown(KeyCode.Keypad2))
         {
             if (currentCooldownTime <= 0.0f)
             {
@@ -90,7 +93,7 @@ public class GameEngine : MonoBehaviour {
             }
         }
 
-        if (Input.GetKey(KeyCode.Keypad3))
+        if (Input.GetKeyDown(KeyCode.Keypad3))
         {
             if (currentCooldownTime <= 0.0f)
             {
@@ -99,7 +102,7 @@ public class GameEngine : MonoBehaviour {
             }
         }
 
-        if (Input.GetKey(KeyCode.Keypad4))
+        if (Input.GetKeyDown(KeyCode.Keypad4))
         {
             if (currentCooldownTime <= 0.0f)
             {
@@ -108,7 +111,7 @@ public class GameEngine : MonoBehaviour {
             }
         }
 
-        if (Input.GetKey(KeyCode.Keypad5))
+        if (Input.GetKeyDown(KeyCode.Keypad5))
         {
             if (currentCooldownTime <= 0.0f)
             {
