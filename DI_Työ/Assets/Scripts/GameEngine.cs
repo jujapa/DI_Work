@@ -57,7 +57,7 @@ public class GameEngine : MonoBehaviour {
         #region testing_inputs
         if (Input.GetKeyDown(KeyCode.F5))
         {
-            storyEngineInstance.DebugPrint();
+            //storyEngineInstance.DebugPrint();
         }
 
         if (Input.GetKey(KeyCode.M))

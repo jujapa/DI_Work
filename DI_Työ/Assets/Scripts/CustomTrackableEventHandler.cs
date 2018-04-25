@@ -16,14 +16,10 @@ namespace Vuforia
                                                 ITrackableEventHandler
     {
         #region PRIVATE_MEMBER_VARIABLES
-
         private TrackableBehaviour mTrackableBehaviour;
         private GameObject storyEngine;
         public StoryEngine.Location trackableLocation;
         public GameObject trackableCanvas;
-
-        
-
         #endregion // PRIVATE_MEMBER_VARIABLES
 
 
@@ -86,7 +82,6 @@ namespace Vuforia
 
         #region PRIVATE_METHODS
 
-
         private void OnTrackingFound()
         {
             //Debug.Log("Test Text Debug.");
@@ -103,11 +98,12 @@ namespace Vuforia
             }
 
             //Enables canvas
-            //GetComponentInChildren<Canvas>().gameObject.SetActive(true);
 
+            //GetComponentInChildren<Canvas>().gameObject.SetActive(true);
             //GetComponentInChildren<Text>().text = engine.CreateInfoText(trackableLocation);
             //GetComponentInChildren<ImageTargetTextScript>().gameObject.GetComponent<Text>().text = "Test Text debug.";
-            GetComponentInChildren<ImageTargetTextScript>().gameObject.GetComponent<Text>().text = storyEngine.GetComponent<StoryEngineMono>().CreateInfoText(trackableLocation);
+     
+        GetComponentInChildren<ImageTargetTextScript>().gameObject.GetComponent<Text>().text = storyEngine.GetComponent<StoryEngineMono>().CreateInfoText(trackableLocation);
             Debug.Log("Test Text Debug.");
 
             // Enable colliders:
@@ -118,6 +114,7 @@ namespace Vuforia
 
             //Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
+
 
 
         private void OnTrackingLost()
@@ -150,4 +147,5 @@ namespace Vuforia
 
         #endregion // PRIVATE_METHODS
     }
+
 }

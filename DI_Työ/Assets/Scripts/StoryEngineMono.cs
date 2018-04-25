@@ -7,8 +7,8 @@ public class StoryEngineMono : MonoBehaviour {
 
     public StoryEngine.Location previousLocation = StoryEngine.Location.NoLocation;
     public StoryEngine.Location lastLocation = StoryEngine.Location.NoLocation;
-    public List<StoryEngine.Location> visitedLocations = new List<StoryEngine.Location>();
-    public bool[] visitedLocationsBoolean = new bool[] { true, false, false, false, false, false };
+    //public List<StoryEngine.Location> visitedLocations = new List<StoryEngine.Location>();
+    public bool[] visitedLocationsBoolean = new bool[] { false, false, false, false, false, false };
     //public StoryEngine.Location[] visitedLocations;
     public bool testing;
     private string[] factoids = new string[] { "Coffee room is at the other side.", "This is the place of futuristic learning in modern times.", "This is the fourth floor.", "Agora was known as Facility of Natural Sciences 2.", "Agora's renovation was completed 2017." };
@@ -19,7 +19,10 @@ public class StoryEngineMono : MonoBehaviour {
     void Start()
     {
         //Add nolocation as a visited location as it's no location
-        visitedLocations.Add(StoryEngine.Location.NoLocation);
+        //visitedLocations.Add(StoryEngine.Location.NoLocation);
+        visitedLocationsBoolean[(int)StoryEngine.Location.NoLocation] = true;
+        lastLocation = StoryEngine.Location.NoLocation;
+        previousLocation = StoryEngine.Location.NoLocation;
     }
 
     // Update is called once per frame
@@ -35,6 +38,8 @@ public class StoryEngineMono : MonoBehaviour {
     public string CreateInfoText(StoryEngine.Location loc)
     {
 
+        //Sets visited location flag to true
+        visitedLocationsBoolean[(int)loc] = true;
 
         //updates location
         //Last change in evening
@@ -78,27 +83,27 @@ public class StoryEngineMono : MonoBehaviour {
                     }
                 case 1:
                     {
-                        createdText += "Pre 0";
+                        createdText += "Pre 1";
                         break;
                     }
                 case 2:
                     {
-                        createdText += "Pre 1";
+                        createdText += "Pre 2";
                         break;
                     }
                 case 3:
                     {
-                        createdText += "Pre 2";
+                        createdText += "Pre 3";
                         break;
                     }
                 case 4:
                     {
-                        createdText += "Pre 3";
+                        createdText += "Pre 4";
                         break;
                     }
                 case 5:
                     {
-                        createdText += "Pre 4";
+                        createdText += "Pre 5";
                         break;
                     }
                 default:
@@ -123,35 +128,35 @@ public class StoryEngineMono : MonoBehaviour {
                 //Building case
                 case 1:
                     {
-                        createdText += " Main Body 0";
+                        createdText += " Main Body 1";
                         break;
                     }
 
                 //Tree
                 case 2:
                     {
-                        createdText += " Main Body 1";
+                        createdText += " Main Body 2";
                         break;
                     }
 
                 //Rock case
                 case 3:
                     {
-                        createdText += " Main Body 1";
+                        createdText += " Main Body 3";
                         break;
                     }
 
                 //Chip case
                 case 4:
                     {
-                        createdText += " Main Body 1";
+                        createdText += " Main Body 4";
                         break;
                     }
 
                 //Asphalt case
                 case 5:
                     {
-                        createdText += " Main Body 1";
+                        createdText += " Main Body 5";
                         break;
                     }
 
@@ -215,8 +220,17 @@ public class StoryEngineMono : MonoBehaviour {
     //Causes multible entriest at the time instead of blocking dublicates
     public void CheckForLocation(StoryEngine.Location loc)
     {
+
+
+        if(visitedLocationsBoolean[(int)loc] == true)
+        {
+            
+        }
+
         //visitedLocations.Add(loc);
 
+        /*
+        //Old implementation
         if(visitedLocations.Count >= 0)
         {
             Debug.Log("CheckForLocations debug.");
@@ -224,10 +238,11 @@ public class StoryEngineMono : MonoBehaviour {
 
             if (visitedLocationsBoolean[(int)loc] == false)
             {
-                visitedLocations.Add(loc);
+                //visitedLocations.Add(loc);
                 visitedLocationsBoolean[(int)loc] = true;
             }
         }
+        */
 
         /*
         //Old
@@ -279,8 +294,10 @@ public class StoryEngineMono : MonoBehaviour {
     
 
     
-
+    /*
     //Untested function
+    //Unnessessary in new implementation
+    //Old method
     //Sees if given loc is found in visitedLocations list. Returns bool
     public Boolean CheckForVisitedLocation(StoryEngine.Location loc)
     {
@@ -295,7 +312,7 @@ public class StoryEngineMono : MonoBehaviour {
             }
         }
         return result;
-    }
+    }*/
 
 
     public void UpdateLocation(StoryEngine.Location loc)
@@ -313,7 +330,9 @@ public class StoryEngineMono : MonoBehaviour {
     //For editor testing
 #if UNITY_EDITOR
 
-        //to print visited locations list to console
+    //to print visited locations list to console
+    /*
+     * Old method. Doesn't work in current implementation
     public void DebugPrint()
     {
        for(int x = 0; x < visitedLocations.Count; x++)
@@ -324,6 +343,7 @@ public class StoryEngineMono : MonoBehaviour {
             Debug.Log("Visited Location: " + debugText);
         }     
     }
+    */
 
 #endif
 
