@@ -13,7 +13,8 @@ public class StoryEngineMono : MonoBehaviour {
     public bool testing;
     private string[] factoids = new string[] { "Coffee room is at the other side.", "This is the place of futuristic learning in modern times.", "This is the fourth floor.", "Agora was known as Facility of Natural Sciences 2.", "Agora's renovation was completed 2017." };
     private string[] locationAdvice = new string[] {"Try any location", "Try location 1", "Try location 2", "Try location 3", "Try location 4", "Try location 5" };
-    private List<string> advicePool;
+    //private List<string> advicePool;
+    private List<int> adviceIndex = new List<int>();
 
     // Use this for initialization
     void Start()
@@ -170,9 +171,15 @@ public class StoryEngineMono : MonoBehaviour {
 
             }
 
-            /*
+            
             //Untested Starts
-            //#BUGGED#
+
+        //add random advice for nex location
+        
+            createdText += " " + generateRandomLocationAdvice();
+
+            /*
+             * old and bugged
             //add advice for next location
             for (int x = 0; x < visitedLocations.Count; x++)
             {
@@ -221,11 +228,11 @@ public class StoryEngineMono : MonoBehaviour {
     public void CheckForLocation(StoryEngine.Location loc)
     {
 
-
-        if(visitedLocationsBoolean[(int)loc] == true)
+        if (visitedLocationsBoolean[(int)loc] != true)
         {
-            
-        }
+            visitedLocationsBoolean[(int)loc] = true;
+        }    
+        
 
         //visitedLocations.Add(loc);
 
@@ -293,6 +300,26 @@ public class StoryEngineMono : MonoBehaviour {
     }
     
 
+    /// <summary>
+    /// Generates Random Location Advice from non visited locations
+    /// </summary>
+    /// <returns> advice String </returns>
+    public string generateRandomLocationAdvice()
+    {
+        string advice = "";
+
+        for (int i = 0; i <= visitedLocationsBoolean.Length - 1; ++i)
+        {
+            if (visitedLocationsBoolean[i] == false)
+            {
+                adviceIndex.Add(i);
+            }
+        }
+        const int V = 1;
+        advice = locationAdvice[UnityEngine.Random.Range(0, adviceIndex.Count - V)]; //Causes exception: System.IndexOutOfRangeException: Array index is out of range.
+
+        return advice;
+    }
     
     /*
     //Untested function

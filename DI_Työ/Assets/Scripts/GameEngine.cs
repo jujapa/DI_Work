@@ -54,10 +54,17 @@ public class GameEngine : MonoBehaviour {
 
 
 #if UNITY_EDITOR
+        
         #region testing_inputs
+
         if (Input.GetKeyDown(KeyCode.F5))
         {
             //storyEngineInstance.DebugPrint();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            Debug.Log("F9 Pressed. Non Functional.");
         }
 
         if (Input.GetKey(KeyCode.M))
