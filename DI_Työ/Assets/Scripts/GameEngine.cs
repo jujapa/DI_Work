@@ -67,10 +67,12 @@ public class GameEngine : MonoBehaviour {
             Debug.Log("F9 Pressed. Non Functional.");
         }
 
+        //Doesn't work as intended
         if (Input.GetKey(KeyCode.M))
         {
-            //mapObject.SetActive(!mapObject.activeSelf);
             
+            //mapObject.SetActive(!mapObject.activeSelf);
+            /*
             if (mapObject.activeSelf == false)
             {
                     mapObject.SetActive(true);
@@ -79,6 +81,8 @@ public class GameEngine : MonoBehaviour {
             {
                     mapObject.SetActive(false);
             }
+            */
+            mapObject.SetActive(!mapObject.activeSelf);
             
         }
 

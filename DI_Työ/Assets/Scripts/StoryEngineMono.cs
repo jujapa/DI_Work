@@ -175,9 +175,10 @@ public class StoryEngineMono : MonoBehaviour {
             //Untested Starts
 
         //add random advice for nex location
-        
+        //Causes error
             createdText += " " + generateRandomLocationAdvice();
 
+            #region old_random_advice_implementation
             /*
              * old and bugged
             //add advice for next location
@@ -202,7 +203,7 @@ public class StoryEngineMono : MonoBehaviour {
             }
             //Untested ends
             */
-
+            #endregion
 
 
 
@@ -227,15 +228,10 @@ public class StoryEngineMono : MonoBehaviour {
     //Causes multible entriest at the time instead of blocking dublicates
     public void CheckForLocation(StoryEngine.Location loc)
     {
-
-        if (visitedLocationsBoolean[(int)loc] != true)
-        {
             visitedLocationsBoolean[(int)loc] = true;
-        }    
-        
 
+        #region old_implementation
         //visitedLocations.Add(loc);
-
         /*
         //Old implementation
         if(visitedLocations.Count >= 0)
@@ -250,7 +246,6 @@ public class StoryEngineMono : MonoBehaviour {
             }
         }
         */
-
         /*
         //Old
         if (visitedLocations.Count != 0)
@@ -268,18 +263,20 @@ public class StoryEngineMono : MonoBehaviour {
                 {
                     visitedLocations.Add(loc);
                 }
-            }
-            
+            }    
         }
         else
         {
             visitedLocations.Add(loc);
         }
         */
+        #endregion
     }
 
-    
+
+    #region old_function
     //Untested function
+    //Old Function
     //Sees if given loc is found in given list. Returns bool
     public Boolean CompareToLocationEnum(StoryEngine.Location loc, StoryEngine.Location[] locList)
     {
@@ -292,13 +289,11 @@ public class StoryEngineMono : MonoBehaviour {
                 result = true;
                 break;
             }
-
-            
         }
-
         return result;
     }
-    
+    #endregion
+
 
     /// <summary>
     /// Generates Random Location Advice from non visited locations
@@ -313,14 +308,22 @@ public class StoryEngineMono : MonoBehaviour {
             if (visitedLocationsBoolean[i] == false)
             {
                 adviceIndex.Add(i);
+                break;
             }
         }
-        const int V = 1;
-        advice = locationAdvice[UnityEngine.Random.Range(0, adviceIndex.Count - V)]; //Causes exception: System.IndexOutOfRangeException: Array index is out of range.
+
+        int randomIndex = UnityEngine.Random.Range(0, adviceIndex.Count - 1);
+        /*
+        Debug.Log("adviceIndex Count: " + adviceIndex.Count);
+        Debug.Log("locationAdvice lenght: " + locationAdvice.Length);
+        Debug.Log("randomIndex: " + randomIndex); //*Possibly fixed* Random index can go over locationAdvice lenght. >> adviceIndex.Count can go over 6
+        */
+        advice = locationAdvice[randomIndex]; //*Possibly fixed* Causes exception: System.IndexOutOfRangeException: Array index is out of range.
 
         return advice;
     }
-    
+
+    #region unnessessary_function
     /*
     //Untested function
     //Unnessessary in new implementation
@@ -340,6 +343,7 @@ public class StoryEngineMono : MonoBehaviour {
         }
         return result;
     }*/
+    #endregion
 
 
     public void UpdateLocation(StoryEngine.Location loc)
