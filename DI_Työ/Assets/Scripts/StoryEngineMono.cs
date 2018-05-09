@@ -171,11 +171,8 @@ public class StoryEngineMono : MonoBehaviour {
 
             }
 
-            
-            //Untested Starts
-
         //add random advice for nex location
-        //Causes error
+
             createdText += " " + generateRandomLocationAdvice();
 
             #region old_random_advice_implementation
@@ -311,15 +308,22 @@ public class StoryEngineMono : MonoBehaviour {
                 break;
             }
         }
-
-        int randomIndex = UnityEngine.Random.Range(0, adviceIndex.Count - 1);
-        /*
-        Debug.Log("adviceIndex Count: " + adviceIndex.Count);
-        Debug.Log("locationAdvice lenght: " + locationAdvice.Length);
-        Debug.Log("randomIndex: " + randomIndex); //*Possibly fixed* Random index can go over locationAdvice lenght. >> adviceIndex.Count can go over 6
-        */
-        advice = locationAdvice[randomIndex]; //*Possibly fixed* Causes exception: System.IndexOutOfRangeException: Array index is out of range.
-
+        if (adviceIndex.Count != 0) {
+            int randomIndex = UnityEngine.Random.Range(0, adviceIndex.Count - 1);
+            #region Debug
+            /*
+            //Debug.Log("adviceIndex Count: " + adviceIndex.Count);
+            //Debug.Log("locationAdvice lenght: " + locationAdvice.Length);
+            //Debug.Log("randomIndex: " + randomIndex); //*Possibly fixed* Random index can go over locationAdvice lenght. >> adviceIndex.Count can go over 6
+            */
+            #endregion
+            advice = locationAdvice[randomIndex]; //*Possibly fixed* Causes exception: System.IndexOutOfRangeException: Array index is out of range.
+        }
+        else
+        {
+            advice = "All Locations are visited.";
+        }
+            
         return advice;
     }
 
@@ -344,7 +348,6 @@ public class StoryEngineMono : MonoBehaviour {
         return result;
     }*/
     #endregion
-
 
     public void UpdateLocation(StoryEngine.Location loc)
     {
