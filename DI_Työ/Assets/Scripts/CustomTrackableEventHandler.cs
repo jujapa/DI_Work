@@ -20,6 +20,7 @@ namespace Vuforia
         private GameObject storyEngine;
         public StoryEngine.Location trackableLocation;
         public GameObject trackableCanvas;
+        private GameEngine gameEngineInstance;
         #endregion // PRIVATE_MEMBER_VARIABLES
 
 
@@ -29,6 +30,7 @@ namespace Vuforia
         void Start()
         {
             storyEngine = GameObject.FindGameObjectWithTag("StoryEngine");
+            gameEngineInstance = GameObject.FindGameObjectWithTag("GameEngine").GetComponent<GameEngine>();
             //Debug.Log("Start Test");
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
             if (mTrackableBehaviour)
@@ -104,6 +106,7 @@ namespace Vuforia
             //GetComponentInChildren<ImageTargetTextScript>().gameObject.GetComponent<Text>().text = "Test Text debug.";
      
         GetComponentInChildren<ImageTargetTextScript>().gameObject.GetComponent<Text>().text = storyEngine.GetComponent<StoryEngineMono>().CreateInfoText(trackableLocation);
+            gameEngineInstance.RandomizeFactoidText();
             Debug.Log("Test Text Debug.");
 
             // Enable colliders:

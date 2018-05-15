@@ -11,7 +11,7 @@ public class StoryEngineMono : MonoBehaviour {
     public bool[] visitedLocationsBoolean = new bool[] { false, false, false, false, false, false };
     //public StoryEngine.Location[] visitedLocations;
     public bool testing;
-    private string[] factoids = new string[] { "Coffee room is at the other side.", "This is the place of futuristic learning in modern times.", "This is the fourth floor.", "Agora was known as Facility of Natural Sciences 2.", "Agora's renovation was completed 2017." };
+    public string[] factoids = new string[] { "Coffee room is at the other side.", "This is the place of futuristic learning in modern times.", "This is the fourth floor.", "Agora was known as Facility of Natural Sciences 2.", "Agora's renovation was completed 2017." };
     private string[] locationAdvice = new string[] {"Try any location", "Try location 1", "Try location 2", "Try location 3", "Try location 4", "Try location 5" };
     //private List<string> advicePool;
     private List<int> adviceIndex = new List<int>();

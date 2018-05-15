@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameEngine : MonoBehaviour {
 
     public GameObject mapObject;
     public GameObject closeProgramWindow;
     public StoryEngineMono storyEngineInstance;
+    private Text mapFactoidText;
+    private string selectedFactoid;
     //public GameObject cameraObject;
 
     private float buttonCooldownTime = 2.0f;
@@ -16,7 +19,9 @@ public class GameEngine : MonoBehaviour {
 	void Start () {
         mapObject.SetActive(false);
         storyEngineInstance = GameObject.FindGameObjectWithTag("StoryEngine").GetComponent<StoryEngineMono>();
+        
         //cameraObject.SetActive(true);
+        RandomizeFactoidText();
 	}
 	
 	// Update is called once per frame
@@ -41,6 +46,8 @@ public class GameEngine : MonoBehaviour {
             if (mapObject.activeSelf == false)//replaced active with activeSelf
             {
                 mapObject.SetActive(true);
+                mapFactoidText = GameObject.FindGameObjectWithTag("FactoidText").GetComponent<Text>();
+                mapFactoidText.text = selectedFactoid;
             }
         }
         else
@@ -70,7 +77,7 @@ public class GameEngine : MonoBehaviour {
         //Doesn't work as intended
         if (Input.GetKey(KeyCode.M))
         {
-            
+            #region old
             //mapObject.SetActive(!mapObject.activeSelf);
             /*
             if (mapObject.activeSelf == false)
@@ -82,8 +89,11 @@ public class GameEngine : MonoBehaviour {
                     mapObject.SetActive(false);
             }
             */
+            #endregion
             mapObject.SetActive(!mapObject.activeSelf);
-            
+            mapFactoidText = GameObject.FindGameObjectWithTag("FactoidText").GetComponent<Text>();
+            mapFactoidText.text = selectedFactoid;
+
         }
 
         if (Input.GetKeyDown(KeyCode.Keypad1))
@@ -135,5 +145,12 @@ public class GameEngine : MonoBehaviour {
         //Debug.Log(string.Format("{0:N4}", currentCooldownTime));
         #endregion
 #endif
+    }
+
+    //Sets Map Screens random factoid
+    public void RandomizeFactoidText()
+    {
+        string factoid = storyEngineInstance.factoids[Random.Range(0, storyEngineInstance.factoids.Length - 1)];
+        selectedFactoid = factoid;
     }
 }
