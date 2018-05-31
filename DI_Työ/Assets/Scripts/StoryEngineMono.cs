@@ -317,7 +317,7 @@ public class StoryEngineMono : MonoBehaviour {
             //Debug.Log("randomIndex: " + randomIndex); //*Possibly fixed* Random index can go over locationAdvice lenght. >> adviceIndex.Count can go over 6
             */
             #endregion
-            advice = locationAdvice[randomIndex]; //*Possibly fixed* Causes exception: System.IndexOutOfRangeException: Array index is out of range.
+            advice = locationAdvice[randomIndex];
         }
         else
         {
