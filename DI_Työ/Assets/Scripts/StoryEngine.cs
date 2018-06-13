@@ -26,7 +26,10 @@ public class StoryEngine {
 	void Update () {
 		
 	}
+    */
 
+    #region old
+        /*
     /// <summary>
     /// Returns text for the needed location
     /// </summary>
@@ -128,5 +131,6 @@ public class StoryEngine {
 
     }
     */
+    #endregion
 
 }
