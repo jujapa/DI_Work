@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DI_Työ", "DI_Työ.csproj", "{92415AE3-CAC0-C8F6-59B6-1A095685597E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DI_Työ.Editor", "DI_Työ.Editor.csproj", "{0CAF8016-3D02-191C-9F59-4EEB672C43E3}"
