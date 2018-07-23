@@ -18,11 +18,15 @@ namespace Vuforia
         #region PRIVATE_MEMBER_VARIABLES
         private TrackableBehaviour mTrackableBehaviour;
         private GameObject storyEngine;
-        public StoryEngine.Location trackableLocation;
-        public GameObject trackableCanvas;
         private GameEngine gameEngineInstance;
+        private bool testing; //Added for real case
         #endregion // PRIVATE_MEMBER_VARIABLES
 
+        #region PUBLIC_MEMBER_VARIABLES
+        public StoryEngine.Location trackableLocation;
+        public StoryEngine.RealLocation realTrackableLocation; // Added for real case
+        public GameObject trackableCanvas;
+        #endregion // PUBLIC_MEMBER_VARIABLES
 
 
         #region UNTIY_MONOBEHAVIOUR_METHODS
@@ -31,6 +35,7 @@ namespace Vuforia
         {
             storyEngine = GameObject.FindGameObjectWithTag("StoryEngine");
             gameEngineInstance = GameObject.FindGameObjectWithTag("GameEngine").GetComponent<GameEngine>();
+            testing = storyEngine.GetComponent<StoryEngineMono>().testing;// Added for real case
             //Debug.Log("Start Test");
             mTrackableBehaviour = GetComponent<TrackableBehaviour>();
             if (mTrackableBehaviour)
@@ -104,9 +109,16 @@ namespace Vuforia
             //GetComponentInChildren<Canvas>().gameObject.SetActive(true);
             //GetComponentInChildren<Text>().text = engine.CreateInfoText(trackableLocation);
             //GetComponentInChildren<ImageTargetTextScript>().gameObject.GetComponent<Text>().text = "Test Text debug.";
-     
-        GetComponentInChildren<ImageTargetTextScript>().gameObject.GetComponent<Text>().text = storyEngine.GetComponent<StoryEngineMono>().CreateInfoText(trackableLocation);
-            gameEngineInstance.RandomizeFactoidText();
+            if (testing)
+            {
+                GetComponentInChildren<ImageTargetTextScript>().gameObject.GetComponent<Text>().text = storyEngine.GetComponent<StoryEngineMono>().CreateInfoText(trackableLocation);
+            }
+            else
+            {
+                GetComponentInChildren<ImageTargetTextScript>().gameObject.GetComponent<Text>().text = storyEngine.GetComponent<StoryEngineMono>().CreateInfoText(realTrackableLocation);
+            }
+
+                gameEngineInstance.RandomizeFactoidText();
             Debug.Log("Test Text Debug.");
 
             // Enable colliders:

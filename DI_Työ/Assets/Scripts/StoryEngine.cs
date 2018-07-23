@@ -7,6 +7,8 @@ public class StoryEngine {
 
     public enum Location { NoLocation, Building, Tree, Rock, Chips, Asphalt}
 
+    public enum RealLocation { NoLocation, Porrasaula, MRLabra, Terveysteknologia,SulautettuElektroniikka, DataAnalytiikkaJaTekoaly, Ohjelmistotekniikka, Oppimisanalytiikka, Kieliteknologia, Bioinformatiikka, Kahvihuone , MantyJaHonka  }
+
     /*
     public GameObject storyEngineObj;
 
