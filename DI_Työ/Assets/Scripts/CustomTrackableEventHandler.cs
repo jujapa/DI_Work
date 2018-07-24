@@ -115,7 +115,7 @@ namespace Vuforia
             }
             else
             {
-                GetComponentInChildren<ImageTargetTextScript>().gameObject.GetComponent<Text>().text = storyEngine.GetComponent<StoryEngineMono>().CreateInfoText(realTrackableLocation);
+                GetComponentInChildren<ImageTargetTextScript>().gameObject.GetComponent<Text>().text = storyEngine.GetComponent<StoryEngineMono>().CreateInfoText(realTrackableLocation);//causes of of range error in storyengine mono
             }
 
                 gameEngineInstance.RandomizeFactoidText();

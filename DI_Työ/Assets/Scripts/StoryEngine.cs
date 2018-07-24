@@ -7,7 +7,8 @@ public class StoryEngine {
 
     public enum Location { NoLocation, Building, Tree, Rock, Chips, Asphalt}
 
-    public enum RealLocation { NoLocation, Porrasaula, MRLabra, Terveysteknologia,SulautettuElektroniikka, DataAnalytiikkaJaTekoaly, Ohjelmistotekniikka, Oppimisanalytiikka, Kieliteknologia, Bioinformatiikka, Kahvihuone , MantyJaHonka  }
+    //Max index without error is 10. 11 throws an exception.
+    public enum RealLocation { NoLocation, Porrasaula, MRLabra, Terveysteknologia,SulautettuElektroniikka, DataAnalytiikkaJaTekoaly, Ohjelmistotekniikka, Oppimisanalytiikka, Kieliteknologia, MantyJaHonka, Kahvihuone }
 
     /*
     public GameObject storyEngineObj;

@@ -13,23 +13,25 @@ public class StoryEngineMono : MonoBehaviour {
 
     //public List<StoryEngine.Location> visitedLocations = new List<StoryEngine.Location>();
     public bool[] visitedLocationsBoolean = new bool[] { false, false, false, false, false, false };
-    public bool[] realVisitedLocationsBoolean = new bool[] { false, false, false, false, false, false, false, false, false, false, false, false };
+    public bool[] realVisitedLocationsBoolean = new bool[11] { false, false, false, false, false, false, false, false, false, false, false};// Added for real case
+    public int currentRandomAdvice;
     //public StoryEngine.Location[] visitedLocations;
     public bool testing;
     //Testing Values
     public string[] factoids = new string[] { "Coffee room is at the other side.", "This is the place of futuristic learning in modern times.", "This is the fourth floor.", "Agora was known as Facility of Natural Sciences 2.", "Agora's renovation was completed 2017." };
     private string[] locationAdvice = new string[] {"Try any location", "Try location 1", "Try location 2", "Try location 3", "Try location 4", "Try location 5" };
+    //private string[] realLocationAdvice = new string[] { "Try any location", "Try location 1", "Try location 2", "Try location 3", "Try location 4", "Try location 5", "Try location 6", "Try location 7", "Try location 8", "Try location 9", "Try location 10" };
     //Real Values
-    public string[] RealFactoids = new string[] { "Coffee room is at the other side.", "This is the place of futuristic learning in modern times.", "This is the fourth floor.", "Agora was known as Facility of Natural Sciences 2.", "Agora's renovation was completed 2017." };
-    private string[] RealLocationsAdvice = new string[] {"Käy missä vain.",
-        "Seuraavaksi voitte käydä alulassa haukkaamassa raittiimpaa ilmaa.", "Seuraavaksi voitte käydä katsomassa MR-labraa (453).",
+    public string[] realFactoids = new string[] { "Coffee room is at the other side.", "This is the place of futuristic learning in modern times.", "This is the fourth floor.", "Agora was known as Facility of Natural Sciences 2.", "Agora's renovation was completed 2017." };
+    private string[] realLocationAdvice = new string[] {"Käy missä vain.",
+        "Seuraavaksi voitte käydä alulassa haukkaamassa raittiimpaa ilmaa.",
+        "Seuraavaksi voitte käydä katsomassa MR-labraa (453).",
         "Seuraavaksi voitte käydä Terveysteknologian toimipisteellä. (452D)",
         "Elektroniikan tyyssia on mahdollinen seuraava vierailupaikka. (452C)",
         "Voit käydä vierailemassa tekoälytutkinnan labralla. (452B)",
         "Pelikehityksen tutkimusta tehdään huoneessa 452A.",
         "Seuraavaksi voit käydä ViLLE oppimisjärjestelmän kehittäneiden toimipisteellä. (451G)",
         "Neuroverkkoja löytyy huoneesta 451A.",
-        "Seuraavaksi voit käydä Bioinformatiikan paikalla. (450K)",
         "Voit mennä käymään seuraavaksi kahvihuoneen yhteydessä oleville neuvotteluhuoneille.",
         "Kahvihuone löytyy eteläpuolen keskeltä, kuin sydän yksikölle. Sinne on aina hyvä mennä." };    
     
@@ -44,6 +46,7 @@ public class StoryEngineMono : MonoBehaviour {
         visitedLocationsBoolean[(int)StoryEngine.Location.NoLocation] = true;
         lastLocation = StoryEngine.Location.NoLocation;
         previousLocation = StoryEngine.Location.NoLocation;
+        currentRandomAdvice = 1;
     }
 
     // Update is called once per frame
@@ -246,8 +249,26 @@ public class StoryEngineMono : MonoBehaviour {
     {
 
         //Sets visited location flag to true
-        realVisitedLocationsBoolean[(int)loc] = true;
+        //Causes Array index is out of range
+        Debug.Log("index = " + (int)loc);
 
+        if ((int)loc <= realVisitedLocationsBoolean.Length - 1)
+        {
+            realVisitedLocationsBoolean[(int)loc] = true;
+        }
+        else
+        {
+            
+        }
+
+        /*
+         * exception check
+        catch (Exception e)
+        {
+            Debug.Log("Exception index = " + (int)loc);
+            Debug.LogException(e, this);
+        }
+        */
         //updates location
         //Last change in evening
         if (realLastLocation == StoryEngine.RealLocation.NoLocation)
@@ -264,7 +285,15 @@ public class StoryEngineMono : MonoBehaviour {
                 realPreviousLocation = realLastLocation;
                 realLastLocation = loc;
                 //visitedLocations.Add(loc);
-                CheckForLocation(loc);
+                if ((int)loc <= realVisitedLocationsBoolean.Length - 1)
+                {
+                    CheckForLocation(loc);
+                }
+                else
+                {
+
+                }
+                
             }
         }
 
@@ -334,17 +363,19 @@ public class StoryEngineMono : MonoBehaviour {
                         createdText += "";
                         break;
                     }
+                    /*
                 case 9:
                     {
                         createdText += "";
                         break;
                     }
-                case 10:
+                    */
+                case 9:
                     {
                         createdText += "Kokoushuoneet olivat mukavan näköisiä, mutta jatketaan.";
                         break;
                     }
-                case 11:
+                case 10:
                     {
                         createdText += "Kahvihuoneesta on aina harmi lähteä, mutta kierroksen on jatkuttava.";
                         break;
@@ -456,7 +487,6 @@ public class StoryEngineMono : MonoBehaviour {
                         }
                         else
                         {
-
                             createdText += "Huoneessa on tietojenkäsittelytieteen tutkijoita tekemässä Data-analytiikaa ja tekoälytutkimusta. Laboratorion tutkimus keskittyy algoritmisuunnittelun ja koneellisenälyn metodeihin ja tekniikoihin.";
                             break;
                         }
@@ -473,7 +503,6 @@ public class StoryEngineMono : MonoBehaviour {
                         }
                         else
                         {
-
                             createdText += "Ohjelmistotekniikka ei ole ehtinyt uudistumaan näin nopeasti huolimatta alan maineesta nopeaan kehitykseen.";
                             break;
                         }
@@ -489,7 +518,6 @@ public class StoryEngineMono : MonoBehaviour {
                         }
                         else
                         {
-
                             createdText += "Oppimisanalytiikan tavoitteena on hyödyntää opiskelijoista tallennetua tietoa opetuksen ja oppimisen kehittämiseen. ViLLE-oppimisjärjestelmä kehitettiin heidän toimestaan.";
                             break;
                         }
@@ -510,7 +538,7 @@ public class StoryEngineMono : MonoBehaviour {
                             break;
                         }
                     }
-                //
+                /*
                 case 9:
                     {
                         //checks if the place has been visited before
@@ -526,11 +554,12 @@ public class StoryEngineMono : MonoBehaviour {
                             break;
                         }
                     }
-                //
-                case 10:
+                */
+
+                case 9:
                     {
                         //checks if the place has been visited before
-                        if (realVisitedLocationsBoolean[10])
+                        if (realVisitedLocationsBoolean[9])
                         {
                             createdText += "Tämä ei ole kahvihuone. Eikun on.";
                             break;
@@ -543,10 +572,10 @@ public class StoryEngineMono : MonoBehaviour {
                         }
                     }
                 //
-                case 11:
+                case 10:
                     {
                         //checks if the place has been visited before
-                        if (realVisitedLocationsBoolean[11])
+                        if (realVisitedLocationsBoolean[10])
                         {
                             createdText += "Biljardiottelu käytiin 2017, ja uusi on kaukana. Noh. Kahvia on aina… Kai?";
                             break;
@@ -571,7 +600,7 @@ public class StoryEngineMono : MonoBehaviour {
 
             //add random advice for nex location
 
-            createdText += " " + generateRandomLocationAdvice();
+            createdText += " " + generateRealRandomLocationAdvice();
 
         }//End of real use test generator
 
@@ -642,7 +671,8 @@ public class StoryEngineMono : MonoBehaviour {
     //Added for real case
     public void CheckForLocation(StoryEngine.RealLocation loc)
     {
-        visitedLocationsBoolean[(int)loc] = true;
+        Debug.Log("Check index: " + (int)loc);
+        realVisitedLocationsBoolean[(int)loc] = true;
 
     }
 
@@ -670,6 +700,7 @@ public class StoryEngineMono : MonoBehaviour {
 
     /// <summary>
     /// Generates Random Location Advice from non visited locations
+    /// Test Case
     /// </summary>
     /// <returns> advice String </returns>
     public string generateRandomLocationAdvice()
@@ -694,12 +725,59 @@ public class StoryEngineMono : MonoBehaviour {
             */
             #endregion
             advice = locationAdvice[randomIndex];
+            //currentRandomAdvice = randomIndex; // added for real case
         }
         else
         {
-            advice = "All Locations are visited.";
+            advice = "Olette käynnyt kaikkialla.";
         }
             
+        return advice;
+    }
+
+    /// <summary>
+    /// Generates Random Location Advice from non visited locations+
+    /// Real Case
+    /// </summary>
+    /// <returns> advice String </returns>
+    public string generateRealRandomLocationAdvice()
+    {
+        string advice = "";
+
+        for (int i = 0; i <= realVisitedLocationsBoolean.Length - 1; ++i)
+        {
+            if (realVisitedLocationsBoolean[i] == false)
+            {
+                adviceIndex.Add(i);
+                break;
+            }
+        }
+        if (adviceIndex.Count != 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, adviceIndex.Count - 1);
+            #region Debug
+            /*
+            //Debug.Log("adviceIndex Count: " + adviceIndex.Count);
+            //Debug.Log("locationAdvice lenght: " + locationAdvice.Length);
+            //Debug.Log("randomIndex: " + randomIndex); //*Possibly fixed* Random index can go over locationAdvice lenght. >> adviceIndex.Count can go over 6
+            */
+            #endregion
+            Debug.Log(randomIndex);
+            if (randomIndex >= 11)
+            {
+                advice = realLocationAdvice[0]; // gives default advice if index is 11 or above
+            }
+            else
+            {
+                advice = realLocationAdvice[randomIndex];//Causes error when index 11 is given. unknown where 11 is comming from
+                currentRandomAdvice = randomIndex; // added for real case
+            }
+        }
+        else
+        {
+            advice = "Olette käynnyt kaikkialla.";
+        }
+
         return advice;
     }
 
